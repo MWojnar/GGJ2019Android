@@ -34,16 +34,12 @@ public class Location {
     }
 
     public void randomizePeople(List<Person> people) {
+        Random randGen = new Random();
+
         _people.clear();
         for (Person person : people)
-            if (personPresent(person))
+            if (randGen.nextFloat() <= person.getProbabilityForLocation(_id))
                 _people.add(person);
-    }
-
-    public boolean personPresent(Person person) {
-        Random randGen = new Random();
-        float randFloat = randGen.nextFloat();
-        return (randFloat <= person.getProbabilityForLocation(_id));
     }
 
     public void addPerson(Person person) {
@@ -52,5 +48,9 @@ public class Location {
 
     public void removePerson(Person person) {
         _people.remove(person);
+    }
+
+    public List<Person> getPeople() {
+        return _people;
     }
 }

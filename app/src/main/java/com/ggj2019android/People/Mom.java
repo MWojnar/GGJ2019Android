@@ -19,7 +19,7 @@ public class Mom extends Person {
         _description = "Your Mother";
         _image = 0;
         _favor = 1;
-        _locations.put("House", 1.0f);
+        _locations.put("child_bedroom", 1.0f);
         initializeInteractions();
     }
 
@@ -35,7 +35,7 @@ public class Mom extends Person {
     private void initializeInteractions() {
         _possibleInteractions = new ArrayList<Interaction>();
 
-        Interaction interaction = new BasicInteraction(this, "House", "Talk", "Honey come quick! He just said Momma! Maybe he'll say it again?");
+        Interaction interaction = new BasicInteraction(this, "child_bedroom", "Talk", "Honey come quick! He just said Momma! Maybe he'll say it again?");
 
         BasicDialogueOption dialogueOption = new BasicDialogueOption("Goo goo!", "Oh well...", 0);
         ((BasicInteraction) interaction).addDialogueOption(dialogueOption);
