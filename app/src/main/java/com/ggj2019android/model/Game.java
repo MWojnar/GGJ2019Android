@@ -21,7 +21,7 @@ public class Game {
     private List<String> _words;
     private Map<String, Integer> _skills;
     private List<Location> _locations;
-    private List<Person> _people;
+    private Map<String, Person> _people;
 
     public Game(Context applicationContext, long startTime) {
         _applicationContext = applicationContext;
@@ -34,7 +34,7 @@ public class Game {
         _words = new ArrayList<>();
         _skills = new LinkedHashMap<>();
         _locations = new ArrayList<>();
-        _people = new ArrayList<>();
+        _people = new LinkedHashMap<>();
 
         _words.add("Dad");
         _words.add("Mom");
@@ -118,6 +118,13 @@ public class Game {
     }
 
     public List<Person> getPeople() {
-        return _people;
+        List<Person> returnList = new ArrayList<Person>();
+        for (Person person : _people.values())
+            returnList.add(person);
+        return returnList;
+    }
+
+    public Person getPerson(String name) {
+        return _people.get(name);
     }
 }
