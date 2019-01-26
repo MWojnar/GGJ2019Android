@@ -62,6 +62,18 @@
             android:scaleType="fitEnd"
             app:srcCompat="@android:color/darker_gray" />
 
+        <TextView
+            android:id="@+id/lblLocationName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:gravity="bottom|start"
+            android:text="Location"
+            android:textAlignment="viewStart"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
     </FrameLayout>
 
     <Button

@@ -90,6 +90,18 @@ public class Game {
         return _currenLocationId;
     }
 
+    public Location getCurrentLocation()
+    {
+        for (Location l : _locations)
+        {
+            if (l.getId() == _currenLocationId)
+            {
+                return l;
+            }
+        }
+        return null;
+    }
+
     public void setCurrentLocationId(String locationId)
     {
         _currenLocationId = locationId;
