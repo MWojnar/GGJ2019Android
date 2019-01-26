@@ -35,10 +35,10 @@ public class BasicInteraction extends Interaction {
         _dialogueOptions.add(dialogueOption);
     }
 
-    public DialogueOption getDialogueOptionFromId(int id) {
+    /*public DialogueOption getDialogueOptionFromId(int id) {
         for (DialogueOption dialogueOption : _dialogueOptions)
             if (dialogueOption.getId() == id)
                 return dialogueOption;
         return null;
-    }
+    }*/
 }

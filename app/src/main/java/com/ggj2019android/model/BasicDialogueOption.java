@@ -11,13 +11,12 @@ public class BasicDialogueOption extends DialogueOption
     private Map<String, Integer> _skillEffects;
     private Map<String, Integer> _favorEffects;
 
-    public BasicDialogueOption(String person, String location, String inputText, String responseText, int id) {
+    public BasicDialogueOption(String person, String location, String inputText, String responseText) {
         super();
         _person = person;
         _location = location;
         _inputText = inputText;
         _responseText = responseText;
-        _id = id;
         _skillRequirements = new LinkedHashMap<String, Integer>();
         _skillEffects = new LinkedHashMap<String, Integer>();
         _favorEffects = new LinkedHashMap<String, Integer>();

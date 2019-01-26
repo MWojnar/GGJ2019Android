@@ -1,9 +1,16 @@
 package com.ggj2019android.model;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.ggj2019android.People.Mom;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,7 +32,7 @@ public class Game {
     private Map<String, Integer> _skills;
     private Map<String, Location> _locations;
     private Map<String, Person> _people;
-    private List<DialogueOption> _dialogOptions;
+    private List<DialogueOption> _dialogueOptions;
 
     public Game(Context applicationContext, long startTime) {
         _applicationContext = applicationContext;
@@ -39,7 +46,7 @@ public class Game {
         _skills = new LinkedHashMap<>();
         _locations = new LinkedHashMap<>();
         _people = new LinkedHashMap<>();
-        _dialogOptions = new ArrayList<>();
+        _dialogueOptions = new ArrayList<>();
 
         _words.add("Dad");
         _words.add("Mom");
@@ -51,8 +58,61 @@ public class Game {
 
         addPerson(new Mom());
 
-        _dialogOptions.add(new BasicDialogueOption("mom", "child_bedroom", "mommy", "Do you want food?", 0));
-        _dialogOptions.add(new BasicDialogueOption("mom", "child_bedroom", "mommy", "Do you want to play?", 0));
+        loadDialogue();
+        int test = 1;
+    }
+
+    private void loadDialogue() {
+        File dialogueFile = new File("assets/dialogue.csv");
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(_applicationContext.getAssets().open("dialogue.csv")));
+            reader.readLine();
+            String line = reader.readLine();
+            while (line != null) {
+                _dialogueOptions.add(dialogueOptionFromLine(line));
+                line = reader.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            Log.e("Game","Could not load dialogue data, File not found.");
+        } catch (IOException e) {
+            Log.e("Game","Could not load dialogue data.");
+        }
+    }
+
+    private DialogueOption dialogueOptionFromLine(String line) {
+        String[] lineParts = line.split(",");
+
+        //Parse line
+        String person = lineParts[0];
+        String location = lineParts[1];
+        String inputWords = lineParts[2];
+        String responseText = lineParts[3];
+        int favor = 0;
+        try {
+            favor = Integer.parseInt(lineParts[4]);
+        } catch (NumberFormatException e) {
+            System.out.println("Could not translate text \"" + lineParts[4] + "\" from favor column to integer.");
+        }
+        Map<String, Integer> skillEffects = new LinkedHashMap<String, Integer>();
+        for (int i = 5; i < 8; i++) {
+            String[] skillEffectParts = lineParts[i].split(" ");
+            if (skillEffectParts.length == 2)
+                try {
+                    int skillEffectValue = Integer.parseInt(skillEffectParts[1]);
+                    skillEffects.put(skillEffectParts[0], skillEffectValue);
+                } catch (NumberFormatException e) {
+                    System.out.println("Could not interpret value \"" + skillEffectParts[1] + "\" from skill effect column to integer.");
+                }
+        }
+
+        //Create BasicDialogueOption with data
+        BasicDialogueOption dialogueOption = new BasicDialogueOption(person, location, inputWords, responseText);
+        if (favor != 0)
+            dialogueOption.addFavorEffect(person, favor);
+        for (Map.Entry<String, Integer> skillEffect : skillEffects.entrySet())
+            dialogueOption.addSkillEffect(skillEffect.getKey(), skillEffect.getValue());
+
+        return dialogueOption;
     }
 
     public long getStartTime() {
@@ -155,6 +215,6 @@ public class Game {
 
     public List<DialogueOption> getDialogOptions()
     {
-        return _dialogOptions;
+        return _dialogueOptions;
     }
 }
