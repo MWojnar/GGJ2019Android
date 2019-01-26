@@ -51,6 +51,8 @@ public class Game {
 
         addPerson(new Mom());
 
+        _dialogOptions.add(new BasicDialogueOption("mom", "child_bedroom", "mommy", "Do you want food?", 0));
+        _dialogOptions.add(new BasicDialogueOption("mom", "child_bedroom", "mommy", "Do you want to play?", 0));
     }
 
     public long getStartTime() {

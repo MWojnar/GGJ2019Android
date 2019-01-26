@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Mom extends Person {
-    private List<Interaction> _possibleInteractions;
+    //private List<Interaction> _possibleInteractions;
 
     public Mom() {
         super();
@@ -20,9 +20,10 @@ public class Mom extends Person {
         _image = 0;
         _favor = 1;
         _locations.put("child_bedroom", 1.0f);
-        initializeInteractions();
+        //initializeInteractions();
     }
 
+    /*
     @Override
     public void startInteracting(Game game) {
         //Determine available interactions.
@@ -52,4 +53,5 @@ public class Mom extends Person {
 
         _possibleInteractions.add(interaction);
     }
+    */
 }

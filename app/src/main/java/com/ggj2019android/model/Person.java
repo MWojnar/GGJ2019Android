@@ -9,7 +9,7 @@ public abstract class Person {
     protected String _name, _description;
     protected int _image, _favor;
     protected Map<String, Float> _locations;
-    protected List<Interaction> _availableInteractions;
+    //protected List<Interaction> _availableInteractions;
 
     public Person() {
         _name = "";
@@ -17,7 +17,7 @@ public abstract class Person {
         _image = 0;
         _favor = 0;
         _locations = new LinkedHashMap<>();
-        _availableInteractions = new ArrayList<>();
+        //_availableInteractions = new ArrayList<>();
     }
 
     public String getName() {
@@ -44,9 +44,9 @@ public abstract class Person {
         return _locations.containsKey(locationId) ? _locations.get(locationId) : 0.0f;
     }
 
-    public List<Interaction> getAvailableInteractions() {
-        return _availableInteractions;
-    }
+    //public List<Interaction> getAvailableInteractions() {
+    //    return _availableInteractions;
+    //}
 
-    public abstract void startInteracting(Game game);
+    //public abstract void startInteracting(Game game);
 }

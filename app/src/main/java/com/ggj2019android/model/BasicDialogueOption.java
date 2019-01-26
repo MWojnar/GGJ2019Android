@@ -25,11 +25,11 @@ public class BasicDialogueOption extends DialogueOption
 
     @Override
     public boolean isAvailable(Game game) {
-        if (!_person.equals(game.getCurrentPersonName()))
+        if (!_person.equalsIgnoreCase(game.getCurrentPersonName()))
         {
             return false;
         }
-        if (!_location.equals(game.getCurrentLocationId()))
+        if (!_location.equalsIgnoreCase(game.getCurrentLocationId()))
         {
             return false;
         }
