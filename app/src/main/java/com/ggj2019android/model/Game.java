@@ -2,12 +2,18 @@ package com.ggj2019android.model;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Game {
+
+    public static Game INSTANCE = null;
+
     private Context _applicationContext;
-    private long _startTime, _timeElapsed;
+    private long _startTime;
+    private long _timeElapsed;
     private int _age;
     private LifeStage _lifeStage;
     private List<String> _words;
@@ -15,7 +21,20 @@ public class Game {
     private List<Location> _locations;
     private List<Person> _people;
 
-    public Game(Context applicationContext, long startTime) {}
+    public Game(Context applicationContext, long startTime) {
+        _applicationContext = applicationContext;
+        _startTime = startTime;
+        _timeElapsed = 0;
+        _age = 0;
+        _lifeStage = LifeStage.INFANT;
+        _words = new ArrayList<>();
+        _skills = new LinkedHashMap<>();
+        _locations = new ArrayList<>();
+        _people = new ArrayList<>();
+
+        _words.add("Dad");
+        _words.add("Mom");
+    }
 
     public long getStartTime() {
         return _startTime;
