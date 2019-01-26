@@ -1,13 +1,24 @@
 package com.ggj2019android.model;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Person {
-    private String _name, _description;
-    private int _image, _favor;
-    private Map<String, Float> _locations;
-    private List<Interaction> _availableInteractions;
+public abstract class Person {
+    protected String _name, _description;
+    protected int _image, _favor;
+    protected Map<String, Float> _locations;
+    protected List<Interaction> _availableInteractions;
+
+    public Person() {
+        _name = "";
+        _description = "";
+        _image = 0;
+        _favor = 0;
+        _locations = new LinkedHashMap<>();
+        _availableInteractions = new ArrayList<>();
+    }
 
     public String getName() {
         return _name;
@@ -37,8 +48,5 @@ public class Person {
         return _availableInteractions;
     }
 
-    public void startInteracting(Game game) throws UnsupportedOperationException {
-        //Currently has no implementation.
-        throw new UnsupportedOperationException();
-    }
+    public abstract void startInteracting(Game game);
 }
