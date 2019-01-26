@@ -38,7 +38,7 @@ public class Mom extends Person {
 
         Interaction interaction = new BasicInteraction(this, "child_bedroom", "Talk", "Honey come quick! He just said Momma! Maybe he'll say it again?");
 
-        /*BasicDialogueOption dialogueOption = new BasicDialogueOption("Goo goo!", "Oh well...", 0);
+        BasicDialogueOption dialogueOption = new BasicDialogueOption("Goo goo!", "Oh well...", 0);
         ((BasicInteraction) interaction).addDialogueOption(dialogueOption);
 
         dialogueOption = new BasicDialogueOption("Mama!", "See?  He's so smart!", 0);
@@ -49,7 +49,7 @@ public class Mom extends Person {
         dialogueOption = new BasicDialogueOption("(juggle pacifiers)", "...", 0);
         dialogueOption.addSkillRequirement("Dexterity", 100);
         dialogueOption.addSkillEffect("Dexterity", 100);
-        ((BasicInteraction) interaction).addDialogueOption(dialogueOption);*/
+        ((BasicInteraction) interaction).addDialogueOption(dialogueOption);
 
         _possibleInteractions.add(interaction);
     }
