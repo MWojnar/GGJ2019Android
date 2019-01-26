@@ -138,6 +138,9 @@ public class DialogActivity extends AppCompatActivity {
 
     private boolean doesInputMatch(String[] inputWords, DialogueOption option)
     {
+        for (int i = 0; i < inputWords.length; i++)
+            if (!_game.hasWord(inputWords[i]))
+                inputWords[i] = "";
         String[] testWords = option.getInputText().trim().toLowerCase().split("\\s+");
 
         HashSet<String> inputSet = new HashSet<>();

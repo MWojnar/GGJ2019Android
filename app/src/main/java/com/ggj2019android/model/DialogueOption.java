@@ -3,10 +3,12 @@ package com.ggj2019android.model;
 public abstract class DialogueOption {
     protected String _inputText;
     protected String _responseText;
+    protected String _wordsGained;
 
     public DialogueOption() {
         _inputText = "";
         _responseText = "";
+        _wordsGained = "";
     }
 
     public String getInputText() {

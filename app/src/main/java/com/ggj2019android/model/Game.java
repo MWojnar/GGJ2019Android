@@ -48,8 +48,8 @@ public class Game {
         _people = new LinkedHashMap<>();
         _dialogueOptions = new ArrayList<>();
 
-        _words.add("Dad");
-        _words.add("Mom");
+        _words.add("dad");
+        _words.add("mom");
 
         //addLocation("infant_bedroom", "Bedroom", "Your favorite place", 0);
         addLocation("child_bedroom", "Bedroom", "Your favorite place", 0);
@@ -87,14 +87,15 @@ public class Game {
         String location = lineParts[1];
         String inputWords = lineParts[2];
         String responseText = lineParts[3];
+        String wordsGained = lineParts[4];
         int favor = 0;
         try {
-            favor = Integer.parseInt(lineParts[4]);
+            favor = Integer.parseInt(lineParts[5]);
         } catch (NumberFormatException e) {
             System.out.println("Could not translate text \"" + lineParts[4] + "\" from favor column to integer.");
         }
         Map<String, Integer> skillEffects = new LinkedHashMap<String, Integer>();
-        for (int i = 5; i < 8; i++) {
+        for (int i = 6; i < 9; i++) {
             String[] skillEffectParts = lineParts[i].split(" ");
             if (skillEffectParts.length == 2)
                 try {
@@ -106,7 +107,7 @@ public class Game {
         }
 
         //Create BasicDialogueOption with data
-        BasicDialogueOption dialogueOption = new BasicDialogueOption(person, location, inputWords, responseText);
+        BasicDialogueOption dialogueOption = new BasicDialogueOption(person, location, inputWords, responseText, wordsGained);
         if (favor != 0)
             dialogueOption.addFavorEffect(person, favor);
         for (Map.Entry<String, Integer> skillEffect : skillEffects.entrySet())
@@ -140,7 +141,8 @@ public class Game {
     }
 
     public void addWord(String word) {
-        _words.add(word);
+        if (word != null && word != "" && !_words.contains(word))
+            _words.add(word);
     }
 
     public int getSkill(String skill) {
