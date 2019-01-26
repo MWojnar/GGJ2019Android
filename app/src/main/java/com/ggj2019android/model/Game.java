@@ -25,6 +25,7 @@ public class Game {
     private Map<String, Integer> _skills;
     private Map<String, Location> _locations;
     private Map<String, Person> _people;
+    private List<DialogueOption> _dialogOptions;
 
     public Game(Context applicationContext, long startTime) {
         _applicationContext = applicationContext;
@@ -38,6 +39,7 @@ public class Game {
         _skills = new LinkedHashMap<>();
         _locations = new LinkedHashMap<>();
         _people = new LinkedHashMap<>();
+        _dialogOptions = new ArrayList<>();
 
         _words.add("Dad");
         _words.add("Mom");
@@ -147,5 +149,10 @@ public class Game {
 
     public void addPerson(Person person) {
         _people.put(person.getName(), person);
+    }
+
+    public List<DialogueOption> getDialogOptions()
+    {
+        return _dialogOptions;
     }
 }

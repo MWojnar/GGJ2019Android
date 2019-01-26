@@ -3,14 +3,19 @@ package com.ggj2019android.model;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class BasicDialogueOption extends DialogueOption {
+public class BasicDialogueOption extends DialogueOption
+{
+    private String _person;
+    private String _location;
     private Map<String, Integer> _skillRequirements;
     private Map<String, Integer> _skillEffects;
     private Map<String, Integer> _favorEffects;
 
-    public BasicDialogueOption(String text, String responseText, int id) {
+    public BasicDialogueOption(String person, String location, String inputText, String responseText, int id) {
         super();
-        _text = text;
+        _person = person;
+        _location = location;
+        _inputText = inputText;
         _responseText = responseText;
         _id = id;
         _skillRequirements = new LinkedHashMap<String, Integer>();
@@ -20,6 +25,15 @@ public class BasicDialogueOption extends DialogueOption {
 
     @Override
     public boolean isAvailable(Game game) {
+        if (!_person.equals(game.getCurrentPersonName()))
+        {
+            return false;
+        }
+        if (!_location.equals(game.getCurrentLocationId()))
+        {
+            return false;
+        }
+
         for (Map.Entry<String, Integer> skillRequirement : _skillRequirements.entrySet())
             if (game.getSkill(skillRequirement.getKey()) < skillRequirement.getValue())
                 return false;

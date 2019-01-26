@@ -1,18 +1,18 @@
 package com.ggj2019android.model;
 
 public abstract class DialogueOption {
-    protected String _text;
+    protected String _inputText;
     protected String _responseText;
     protected int _id;
 
     public DialogueOption() {
-        _text = "";
+        _inputText = "";
         _responseText = "";
         _id = 0;
     }
 
-    public String getText() {
-        return _text;
+    public String getInputText() {
+        return _inputText;
     }
 
     public String getResponseText() {
