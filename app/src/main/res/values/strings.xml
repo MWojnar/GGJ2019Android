@@ -2,4 +2,5 @@
     <string name="app_name">GGJ2019Android</string>
     <string name="btn_leave_room">Leave Room</string>
     <string name="btn_play_game">Play Game</string>
+    <string name="drawer_vocab_header">Vocabulary</string>
 </resources>
