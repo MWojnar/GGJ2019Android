@@ -40,7 +40,7 @@ public class SelectPersonActivity extends AppCompatActivity
 
         // Setup the List of People at the current Location
         _lstPeople = findViewById(R.id.lstPersons);
-        _peopleLayout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        _peopleLayout = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         _lstPeople.setHasFixedSize(false);
         _lstPeople.setLayoutManager(_peopleLayout);
 

@@ -137,6 +137,10 @@ public class Game {
         return _currentPersonName;
     }
 
+    public Person getCurrentPerson() {
+        return _people.get(_currentPersonName);
+    }
+
     public void setCurrentPerson(String personName) {
         _currentPersonName = personName;
     }
