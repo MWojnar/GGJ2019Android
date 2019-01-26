@@ -16,6 +16,8 @@ public class Game {
     private long _timeElapsed;
     private int _age;
     private LifeStage _lifeStage;
+    private String _currenLocationId;
+
     private List<String> _words;
     private Map<String, Integer> _skills;
     private List<Location> _locations;
@@ -27,6 +29,8 @@ public class Game {
         _timeElapsed = 0;
         _age = 0;
         _lifeStage = LifeStage.INFANT;
+        _currenLocationId = "infant_bedroom";
+
         _words = new ArrayList<>();
         _skills = new LinkedHashMap<>();
         _locations = new ArrayList<>();
@@ -34,6 +38,12 @@ public class Game {
 
         _words.add("Dad");
         _words.add("Mom");
+
+        //addLocation("infant_bedroom", "Bedroom", "Your favorite place", 0);
+        addLocation("child_bedroom", "Bedroom", "Your favorite place", 0);
+        addLocation("child_playground", "Playground", "Has the most awesome swingset", 0);
+        addLocation("child_library", "Library", "Has the best books. This is your quiet place.", 0);
+
     }
 
     public long getStartTime() {
@@ -48,11 +58,11 @@ public class Game {
         return _age;
     }
 
-    public LifeStage get_lifeStage() {
+    public LifeStage getLifeStage() {
         return _lifeStage;
     }
 
-    public List<String> get_words() {
+    public List<String> getWords() {
         return _words;
     }
 
@@ -71,10 +81,28 @@ public class Game {
     public void increaseSkill(String skill, int value) {
         if (_skills.containsKey(skill))
             _skills.put(skill, _skills.get(skill) + value);
+        else
+            _skills.put(skill, value);
     }
 
-    public List<Location> getLocations() {
+    public String getCurrentLocationId()
+    {
+        return _currenLocationId;
+    }
+
+    public void setCurrentLocationId(String locationId)
+    {
+        _currenLocationId = locationId;
+    }
+
+    public List<Location> getLocations()
+    {
         return _locations;
+    }
+
+    private void addLocation(String id, String name, String description, int image)
+    {
+        _locations.add(new Location(id, name, description, image));
     }
 
     public List<Person> getPeople() {
