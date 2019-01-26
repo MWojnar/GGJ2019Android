@@ -41,7 +41,7 @@ public class MapActivity extends AppCompatActivity {
         // Setup the list of locations
         _lstLocations = findViewById(R.id.lstMapLocations);
         _locationsLayout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        _lstLocations.setHasFixedSize(true);
+        _lstLocations.setHasFixedSize(false);
         _lstLocations.setLayoutManager(_locationsLayout);
 
         // Load saved values
@@ -55,8 +55,7 @@ public class MapActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        //_game = Game.INSTANCE;
-        _game = new Game(getApplicationContext(), SystemClock.uptimeMillis());
+        _game = Game.INSTANCE;
 
         _locationsAdapter = new LocationsAdapter(_game.getLocations());
         _lstLocations.setAdapter(_locationsAdapter);
