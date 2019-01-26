@@ -2,6 +2,8 @@ package com.ggj2019android.model;
 
 import android.content.Context;
 
+import com.ggj2019android.People.Mom;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -17,10 +19,11 @@ public class Game {
     private int _age;
     private LifeStage _lifeStage;
     private String _currenLocationId;
+    private String _currentPersonName;
 
     private List<String> _words;
     private Map<String, Integer> _skills;
-    private List<Location> _locations;
+    private Map<String, Location> _locations;
     private Map<String, Person> _people;
 
     public Game(Context applicationContext, long startTime) {
@@ -33,7 +36,7 @@ public class Game {
 
         _words = new ArrayList<>();
         _skills = new LinkedHashMap<>();
-        _locations = new ArrayList<>();
+        _locations = new LinkedHashMap<>();
         _people = new LinkedHashMap<>();
 
         _words.add("Dad");
@@ -43,6 +46,8 @@ public class Game {
         addLocation("child_bedroom", "Bedroom", "Your favorite place", 0);
         addLocation("child_playground", "Playground", "Has the most awesome swingset", 0);
         addLocation("child_library", "Library", "Has the best books. This is your quiet place.", 0);
+
+        addPerson(new Mom());
 
     }
 
@@ -97,12 +102,15 @@ public class Game {
 
     public List<Location> getLocations()
     {
-        return _locations;
+        List<Location> returnList = new ArrayList<Location>();
+        for (Location location : _locations.values())
+            returnList.add(location);
+        return returnList;
     }
 
     private void addLocation(String id, String name, String description, int image)
     {
-        _locations.add(new Location(id, name, description, image));
+        _locations.put(id, new Location(id, name, description, image));
     }
 
     public List<Person> getPeople() {
@@ -114,5 +122,21 @@ public class Game {
 
     public Person getPerson(String name) {
         return _people.get(name);
+    }
+
+    public Location getLocation(String id) {
+        return _locations.get(id);
+    }
+
+    public String getCurrentPersonName() {
+        return _currentPersonName;
+    }
+
+    public void setCurrentPerson(String personName) {
+        _currentPersonName = personName;
+    }
+
+    public void addPerson(Person person) {
+        _people.put(person.getName(), person);
     }
 }

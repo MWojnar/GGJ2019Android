@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.ggj2019android.model.Game;
+import com.ggj2019android.model.Location;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     public void playGame(View view)
     {
         Game game = new Game(getApplicationContext(), SystemClock.uptimeMillis());
+        for (Location location : game.getLocations()) {
+            location.randomizePeople(game.getPeople());
+        }
         Game.INSTANCE = game;
 
         Intent intent = new Intent(this, MapActivity.class);
