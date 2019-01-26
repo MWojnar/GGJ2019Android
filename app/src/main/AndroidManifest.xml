@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MapActivity" />
+        <activity android:name=".SelectPersonActivity" />
+        <activity android:name=".SelectActionActivity" />
+        <activity android:name=".DialogActivity" />
+        <activity android:name=".DialogEndActivity" />
+        <activity android:name=".BirthdayActivity"></activity>
     </application>
 
 </manifest>
