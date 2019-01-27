@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ggj2019android.model.Game;
@@ -25,6 +26,7 @@ import java.util.List;
 public class MapActivity extends AppCompatActivity {
 
     // Controls
+    private ProgressBar _progressYear;
     private RecyclerView _lstLocations;
     private RecyclerView.LayoutManager _locationsLayout;
     private RecyclerView.Adapter _locationsAdapter;
@@ -32,11 +34,14 @@ public class MapActivity extends AppCompatActivity {
     // State
     private SharedPreferences _savedValues;
     private Game _game;
+    private ClockTask _task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        _progressYear = findViewById(R.id.progressYear);
 
         // Setup the list of locations
         _lstLocations = findViewById(R.id.lstMapLocations);
@@ -59,12 +64,16 @@ public class MapActivity extends AppCompatActivity {
 
         _locationsAdapter = new LocationsAdapter(_game.getLocations());
         _lstLocations.setAdapter(_locationsAdapter);
+
+        _task = new ClockTask(_progressYear);
+        _task.execute();
     }
 
     @Override
     protected void onPause()
     {
         super.onPause();
+        _task.cancel(true);
     }
 
     public void visitLocation(String locationId)

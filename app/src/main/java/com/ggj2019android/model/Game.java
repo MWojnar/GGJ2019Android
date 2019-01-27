@@ -1,6 +1,7 @@
 package com.ggj2019android.model;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -17,8 +18,11 @@ public class Game {
 
     public static Game INSTANCE = null;
 
+    public static final long MILLISECONDS_PER_YEAR = 1000L * 60;
+
     private Context _applicationContext;
     private long _startTime;
+    private long _currTime;
     private long _timeElapsed;
     private int _age;
     private LifeStage _lifeStage;
@@ -31,9 +35,10 @@ public class Game {
     private Map<String, Person> _people;
     private List<DialogueOption> _dialogueOptions;
 
-    public Game(Context applicationContext, long startTime) {
+    public Game(Context applicationContext) {
         _applicationContext = applicationContext;
-        _startTime = startTime;
+        _startTime = SystemClock.uptimeMillis();
+        _currTime = _startTime;
         _timeElapsed = 0;
         _age = 0;
         _lifeStage = LifeStage.INFANT;
@@ -125,12 +130,46 @@ public class Game {
         return dialogueOption;
     }
 
-    public long getStartTime() {
-        return _startTime;
+    //public long getStartTime() {
+    //    return _startTime;
+    //}
+
+    public long getTimeElapsed() {
+        return _timeElapsed;
     }
 
-    public void setTimeElapsed(long time) {
-        _timeElapsed = time;
+    public void updateTimeElapsed()
+    {
+        long time = SystemClock.uptimeMillis();
+        long deltaTime = time - _currTime;
+        _timeElapsed += deltaTime;
+        _currTime = time;
+
+        if (_timeElapsed >= MILLISECONDS_PER_YEAR)
+        {
+            _timeElapsed -= MILLISECONDS_PER_YEAR;
+            _age += 1;
+
+            if (_age >= LifeStage.TEEN.getMinAge())
+            {
+                _lifeStage = LifeStage.TEEN;
+            }
+            else if (_age >= LifeStage.CHILD.getMinAge())
+            {
+                _lifeStage = LifeStage.CHILD;
+            }
+
+            randomizePeople();
+        }
+    }
+
+    public void randomizePeople()
+    {
+        List<Location> locations = getLocations();
+        List<Person> people = getPeople();
+        for (Location location : locations) {
+            location.randomizePeople(people);
+        }
     }
 
     public int getAge() {

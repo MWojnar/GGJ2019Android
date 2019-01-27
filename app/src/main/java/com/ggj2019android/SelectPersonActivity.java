@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ggj2019android.model.Game;
@@ -22,6 +23,7 @@ import java.util.List;
 public class SelectPersonActivity extends AppCompatActivity
 {
     // Controls
+    private ProgressBar _progressYear;
     private TextView _lblLocationName;
     private RecyclerView _lstPeople;
     private RecyclerView.LayoutManager _peopleLayout;
@@ -30,12 +32,14 @@ public class SelectPersonActivity extends AppCompatActivity
     // State
     private SharedPreferences _savedValues;
     private Game _game;
+    private ClockTask _task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_person);
 
+        _progressYear = findViewById(R.id.progressYear);
         _lblLocationName = findViewById(R.id.lblLocationName);
 
         // Setup the List of People at the current Location
@@ -58,12 +62,16 @@ public class SelectPersonActivity extends AppCompatActivity
         _peopleAdapter = new SelectPersonActivity.PeopleAdapter(location.getPeople());
         _lstPeople.setAdapter(_peopleAdapter);
         _lblLocationName.setText(location.getName());
+
+        _task = new ClockTask(_progressYear);
+        _task.execute();
     }
 
     @Override
     protected void onPause()
     {
         super.onPause();
+        _task.cancel(true);
     }
 
     public void leaveRoom(View v)
