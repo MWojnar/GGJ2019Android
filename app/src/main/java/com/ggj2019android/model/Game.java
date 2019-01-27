@@ -4,12 +4,9 @@ import android.content.Context;
 import android.os.SystemClock;
 import android.util.Log;
 
-import com.ggj2019android.People.Mom;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -29,7 +26,7 @@ public class Game {
     private long _timeElapsed;
     private int _age;
     private LifeStage _lifeStage;
-    private String _currenLocationId;
+    private String _currentLocationId;
     private String _currentPersonName;
 
     private List<String> _words;
@@ -45,7 +42,7 @@ public class Game {
         _timeElapsed = 0;
         _age = 0;
         _lifeStage = LifeStage.INFANT;
-        _currenLocationId = "infant_bedroom";
+        _currentLocationId = "bedroom";
 
         _words = new ArrayList<>();
         _skills = new LinkedHashMap<>();
@@ -57,17 +54,17 @@ public class Game {
         _words.add("mom");
 
         //addLocation("infant_bedroom", "Bedroom", "Your favorite place", 0);
-        addLocation("child_bedroom", "Bedroom", "Your favorite place", 0);
-        addLocation("child_playground", "Playground", "Has the most awesome swingset", 0);
-        addLocation("child_library", "Library", "Has the best books. This is your quiet place.", 0);
+        addLocation("bedroom", "Bedroom", "Your favorite place", 0);
+        //addLocation("playground", "Playground", "Has the most awesome swingset", 0);
+        //addLocation("library", "Library", "Has the best books. This is your quiet place.", 0);
 
         Person mom = new Person("Mom", "Your Mother", 0);
         Person dad = new Person("Dad", "Your Dad", 0);
 
-        mom.setProbabilityForLocation("child_bedroom", 1.0f);
-        dad.setProbabilityForLocation("child_bedroom", 1.0f);
-        mom.setProbabilityForLocation("child_library", 0.2f);
-        dad.setProbabilityForLocation("child_playground", 0.2f);
+        mom.setProbabilityForLocation("bedroom", 1.0f);
+        dad.setProbabilityForLocation("bedroom", 1.0f);
+        mom.setProbabilityForLocation("library", 0.2f);
+        dad.setProbabilityForLocation("playground", 0.2f);
 
         addPerson(mom);
         addPerson(dad);
@@ -102,14 +99,16 @@ public class Game {
         String inputWords = lineParts[2];
         String responseText = lineParts[3];
         String wordsGained = lineParts[4];
+        String locationsGained = lineParts[5];
+        String peopleGained = lineParts[6];
         int favor = 0;
         try {
-            favor = Integer.parseInt(lineParts[5]);
+            favor = Integer.parseInt(lineParts[7]);
         } catch (NumberFormatException e) {
             System.out.println("Could not translate text \"" + lineParts[4] + "\" from favor column to integer.");
         }
         Map<String, Integer> skillEffects = new LinkedHashMap<String, Integer>();
-        for (int i = 6; i < 9; i++) {
+        for (int i = 8; i < 11; i++) {
             String[] skillEffectParts = lineParts[i].split(" ");
             if (skillEffectParts.length == 2)
                 try {
@@ -121,7 +120,8 @@ public class Game {
         }
 
         //Create BasicDialogueOption with data
-        BasicDialogueOption dialogueOption = new BasicDialogueOption(person, location, inputWords, responseText, wordsGained);
+        BasicDialogueOption dialogueOption = new BasicDialogueOption(person, location, inputWords, responseText,
+                wordsGained, locationsGained, peopleGained);
         if (favor != 0)
             dialogueOption.addFavorEffect(person, favor);
         for (Map.Entry<String, Integer> skillEffect : skillEffects.entrySet())
@@ -206,17 +206,17 @@ public class Game {
 
     public String getCurrentLocationId()
     {
-        return _currenLocationId;
+        return _currentLocationId;
     }
 
     public Location getCurrentLocation()
     {
-        return _locations.get(_currenLocationId);
+        return _locations.get(_currentLocationId);
     }
 
     public void setCurrentLocationId(String locationId)
     {
-        _currenLocationId = locationId;
+        _currentLocationId = locationId;
     }
 
     public List<Location> getLocations()
@@ -230,6 +230,35 @@ public class Game {
     private void addLocation(String id, String name, String description, int image)
     {
         _locations.put(id, new Location(id, name, description, image));
+    }
+
+    public void addLocation(String locationId) {
+        for (Location location : _locations.values())
+            if (location.getId() == locationId)
+                return;
+        switch (locationId) {
+            case "bedroom":
+                addLocation(locationId, "Bedroom", "Your favorite place", 0);
+                break;
+            case "playground":
+                addLocation(locationId, "Playground", "Has the most awesome swingset", 0);
+                break;
+            case "library":
+                addLocation(locationId, "Library", "Has the best books. This is your quiet place.", 0);
+                break;
+            case "friend_house":
+                addLocation(locationId, "Friend's House", "You love hanging out at your friends' homes!", 0);
+                break;
+            case "bandroom":
+                addLocation(locationId, "Bandroom", "A great place to let loose and jam.", 0);
+                break;
+            case "stage":
+                addLocation(locationId, "Stage", "Don't be nervous! It's showtime!", 0);
+                break;
+            case "dance_studio":
+                addLocation(locationId, "Dance Studio", "A place to move it to the beat.", 0);
+                break;
+        }
     }
 
     public List<Person> getPeople() {
@@ -261,6 +290,45 @@ public class Game {
 
     public void addPerson(Person person) {
         _people.put(person.getName(), person);
+    }
+
+    public void addPerson(String personName) {
+        for (Person person : _people.values())
+            if (person.getName() == personName)
+                return;
+        switch(personName) {
+            case "tj":
+                Person tj = new Person(personName, "A bookworm, but a good friend.", 0);
+                tj.setProbabilityForLocation("library", 1.0f);
+                tj.setProbabilityForLocation("friend_house", 0.5f);
+                tj.setProbabilityForLocation("playground", 0.1f);
+                addPerson(tj);
+                break;
+            case "shawn":
+                Person shawn = new Person(personName, "Loves playing all kinds of sports.", 0);
+                shawn.setProbabilityForLocation("playground", 1.0f);
+                shawn.setProbabilityForLocation("friend_house", 0.5f);
+                shawn.setProbabilityForLocation("library", 0.1f);
+                addPerson(shawn);
+                break;
+            case "judy":
+                Person judy = new Person(personName, "A very talented pianist.", 0);
+                judy.setProbabilityForLocation("bandroom", 1.0f);
+                judy.setProbabilityForLocation("stage", 0.5f);
+                judy.setProbabilityForLocation("friend_house", 0.5f);
+                judy.setProbabilityForLocation("dance_studio", 0.1f);
+                addPerson(judy);
+                break;
+            case "jennifer":
+                Person jennifer = new Person(personName, "Loves to dance, very energetic.", 0);
+                jennifer.setProbabilityForLocation("dance_studio", 1.0f);
+                jennifer.setProbabilityForLocation("stage", 0.5f);
+                jennifer.setProbabilityForLocation("friend_house", 0.5f);
+                jennifer.setProbabilityForLocation("bandroom", 0.1f);
+                addPerson(jennifer);
+                break;
+        }
+        randomizePeople();
     }
 
     public List<DialogueOption> getDialogOptions()

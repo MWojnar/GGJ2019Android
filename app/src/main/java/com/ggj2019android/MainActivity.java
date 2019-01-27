@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public void playGame(View view)
     {
         Game game = new Game(getApplicationContext());
-        game.setCurrentLocationId("child_bedroom");
+        game.setCurrentLocationId("bedroom");
         game.setCurrentPerson("Mom");
         game.randomizePeople();
         Game.INSTANCE = game;

@@ -1,19 +1,52 @@
-Person,Location,Input Words,Response Text,Words Gained,Favor Effect,Skill Effect 1,Skill Effect 2,Skill Effect 3,Other Effect
-Mom,bedroom,mom,Do you want to play?,play,1,5,4,3,
-Mom,bedroom,play,Let's play a peek-a-boo with dad.,dad,2,1,5,4,
-Mom,bedroom,dad,Dad got you a new toy!,toy,3,2,1,5,
-Dad,bedroom,toy,Happy Birthday!,birthday,4,3,2,1,
-Dad,bedroom,birthday,Let's read a book before bed.,read,5,4,3,2,
-Dad,bedroom,read,Keep up the practice! TJ will help you get better!,practice,1,5,4,3,
-TJ,library,practice,Study this book and you will understand.,study,2,1,5,4,
-TJ,friend's house,study,Your vocabulary is improving.,vocabulary,3,2,1,5,
-TJ,bedroom,vocabulary,You have mastered vocabulary. Let's go to Shawn's soccer game now!,soccer,4,3,2,1,
-Shawn,playground,soccer,Soccer requires dexterity to play well. ,dexterity,5,4,3,2,
-Shawn,playground,dexterity,To be skillful at sports is just as accomplished as a practiced musician.,skillful,1,5,4,3,
-Shawn,friend's house,skillful,Let's go see Judy's musical performance!,musical,2,1,5,4,
-Judy,bandroom,musical,Judy has mastered the piano. Would you like to take lessons?,piano,3,2,1,5,
-Judy,bandroom,piano,"Not to worry, maybe try a different octave!",octave,4,3,2,1,
-Judy,stage,octave,You have come a long way! I bet Jennifer's dance is about to start. Want to watch?,dance,5,4,3,2,
-Jennifer,dance studio,dance,Dancing lets me use my imagination.,imagination,1,5,4,3,
-Jennifer,bandroom,imagination,Fueling my imagination allows me to express my feelings.,feelings,2,1,5,4,
-Jennifer,stage,perform,"Even when performing in front of a huge crowd, it's my friends faces I search out.",friends,3,2,1,5,
+Person,Location,Input Words,Response Text,Words Gained,Locations Unlocked,People Unlocked,Favor Effect,Skill Effect 1,Skill Effect 2,Skill Effect 3,Other Effect,~
+Mom,bedroom,mom,Do you want to play?,play,,,,,,,,~
+Mom,bedroom,play,Let's play a peek-a-boo with dad.,dad,,,,,,,,~
+Mom,bedroom,dad,Dad got you a new toy!,toy,,dad,,,,,,~
+Dad,bedroom,toy,Happy Birthday!,birthday happy,,,,,,,,~
+Dad,bedroom,birthday,Let's read a book before bed.,read book,,,,,,,,~
+Dad,bedroom,read,Keep up the practice! TJ will help you get better!,practice help,library friend_house,tj,,,,,,~
+TJ,library,practice,Study this book and you will understand.,study understand,,,,,,,,~
+TJ,friend_house,study,Your vocabulary is improving.,vocabulary,,,,,,,,~
+TJ,bedroom,vocabulary,You have mastered vocabulary. Let's go to Shawn's soccer game now!,soccer game,playground,shawn,,,,,,~
+Shawn,playground,soccer,Soccer requires dexterity to play well. ,dexterity,,,,,,,,~
+Shawn,playground,dexterity,To be skillful at sports is just as accomplished as a practiced musician.,skillful sports,,,,,,,,~
+Shawn,friend_house,skillful,Let's go see Judy's musical performance!,musical see,bandroom,judy,,,,,,~
+Judy,bandroom,musical,I have mastered the piano. Would you like to take lessons?,piano lessons,,,,,,,,~
+Judy,bandroom,piano,"Don't worry, maybe try a different octave!",octave different,stage,,,,,,,~
+Judy,stage,octave,You have come a long way! I bet Jennifer's dance is about to start. Want to watch?,dance watch,dance_studio,jennifer,,,,,,~
+Jennifer,dance studio,dance,Dancing lets me use my imagination.,imagination,,,,,,,,~
+Jennifer,bandroom,imagination,Fueling my imagination allows me to express my feelings.,feelings,,,,,,,,~
+Jennifer,stage,feelings,"Even when performing in front of a huge crowd, it's my friends faces I search out.",friends crowd,,,,,,,,~
+Dad,,dad,"Yes, that's me!",yes,,,,,,,,~
+Dad,,book,An important tool to learn.,learn,,,,,,,,~
+Dad,,happy,"Hello happy, I'm Dad!",hello,,,,,,,,~
+TJ,,learn,"Yes, learning is important.",yes important,,,,,,,,~
+TJ,,help,I will help you study.,study,,,,,,,,~
+TJ,,toy,We can play later.,later,,,,,,,,~
+TJ,,understand,I'm happy you understand!,happy,,,,,,,,~
+TJ,,birthday,"No, my birthday is not today.",today no,,,,,,,,~
+TJ,,friends,We'll conquer those tests with our friendship and intelligence!,intelligence,,,,,,,,~
+Shawn,,vocabulary,To lose isn't even a part of my vocabulary!,lose,,,,,,,,~
+Shawn,,play,Let's play some Baseball too.,baseball,,,,,,,,~
+Shawn,,book,But books aren't as fun...,fun,,,,,,,,~
+Shawn,,watch,Watch me kick the ball!,kick ball,,,,,,,,~
+Shawn,,happy,I'm happiest when I'm outside.,outside,,,,,,,,~
+Shawn,,friends,There is no bond of greater strength than friendship!,strength,,,,,,,,~
+Judy,,feelings,You need to put more feeling into it!  More emotion!,emotion,,,,,,,,~
+Judy,,practice,It takes lots of practice to become good!,good,,,,,,,,~
+Judy,,dexterity,To perform music also requires dexterity.,perform,,,,,,,,~
+Judy,,learn,You must learn the notes on the scale!,notes,,,,,,,,~
+Judy,,yes,"Yes, music is the best!",best,,,,,,,,~
+Judy,,friends,The best friends always have the greatest empathy!,empathy,,,,,,,,~
+Jennifer,,notes,"Watch closely and take notes, this dance is a doozy!",watch,,,,,,,,~
+Jennifer,,lose,"If you have fun dancing, then you can't lose!",fun,,,,,,,,~
+Jennifer,,important,It's important to master the basics.,basics,,,,,,,,~
+Jennifer,,today,The weather is great today!,weather,,,,,,,,~
+Jennifer,,emotion,Dance is how we express our emotions with our bodies.,express,,,,,,,,~
+Jennifer,,friends,Our friendship has me just bursting with creativity!,creativity,,,,,,,,~
+Mom,,hello,Hello!,,,,,,,,,~
+Dad,,hello,Hello!,,,,,,,,,~
+TJ,,hello,Hello!,,,,,,,,,~
+Shawn,,hello,Hello!,,,,,,,,,~
+Judy,,hello,Hello!,,,,,,,,,~
+Jennifer,,hello,Hello!,,,,,,,,,~
