@@ -11,13 +11,16 @@ public class BasicDialogueOption extends DialogueOption
     private Map<String, Integer> _skillEffects;
     private Map<String, Integer> _favorEffects;
 
-    public BasicDialogueOption(String person, String location, String inputText, String responseText, String wordsGained) {
+    public BasicDialogueOption(String person, String location, String inputText, String responseText,
+                               String wordsGained, String locationsGained, String peopleGained) {
         super();
         _person = person;
         _location = location;
         _inputText = inputText;
         _responseText = responseText;
         _wordsGained = wordsGained;
+        _locationsGained = locationsGained;
+        _peopleGained = peopleGained;
         _skillRequirements = new LinkedHashMap<String, Integer>();
         _skillEffects = new LinkedHashMap<String, Integer>();
         _favorEffects = new LinkedHashMap<String, Integer>();
@@ -48,6 +51,10 @@ public class BasicDialogueOption extends DialogueOption
             game.getPerson(favorEffect.getKey()).adjustFavor(favorEffect.getValue());
         for (String word : _wordsGained.split(" "))
             game.addWord(word);
+        for (String location : _locationsGained.split(" "))
+            game.addLocation(location);
+        for (String person : _peopleGained.split(" "))
+            game.addPerson(person);
     }
 
     public void addSkillRequirement(String skillName, int minValue) {

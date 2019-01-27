@@ -4,11 +4,15 @@ public abstract class DialogueOption {
     protected String _inputText;
     protected String _responseText;
     protected String _wordsGained;
+    protected String _locationsGained;
+    protected String _peopleGained;
 
     public DialogueOption() {
         _inputText = "";
         _responseText = "";
         _wordsGained = "";
+        _locationsGained = "";
+        _peopleGained = "";
     }
 
     public String getInputText() {
