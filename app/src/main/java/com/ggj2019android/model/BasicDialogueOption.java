@@ -29,10 +29,10 @@ public class BasicDialogueOption extends DialogueOption
         {
             return false;
         }
-        if (!_location.equalsIgnoreCase(game.getCurrentLocationId()))
-        {
-            return false;
-        }
+        //if (!_location.equalsIgnoreCase(game.getCurrentLocationId()))
+        //{
+        //    return false;
+        //}
 
         for (Map.Entry<String, Integer> skillRequirement : _skillRequirements.entrySet())
             if (game.getSkill(skillRequirement.getKey()) < skillRequirement.getValue())

@@ -19,7 +19,7 @@ public class Mom extends Person {
         _description = "Your Mother";
         _image = 0;
         _favor = 1;
-        _locations.put("child_bedroom", 1.0f);
+        setProbabilityForLocation("child_bedroom", 1.0f);
         //initializeInteractions();
     }
 

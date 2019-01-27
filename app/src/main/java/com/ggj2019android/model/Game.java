@@ -56,7 +56,16 @@ public class Game {
         addLocation("child_playground", "Playground", "Has the most awesome swingset", 0);
         addLocation("child_library", "Library", "Has the best books. This is your quiet place.", 0);
 
-        addPerson(new Mom());
+        Person mom = new Person("Mom", "Your Mother", 0);
+        Person dad = new Person("Dad", "Your Dad", 0);
+
+        mom.setProbabilityForLocation("child_bedroom", 1.0f);
+        dad.setProbabilityForLocation("child_bedroom", 1.0f);
+        mom.setProbabilityForLocation("child_library", 0.2f);
+        dad.setProbabilityForLocation("child_playground", 0.2f);
+
+        addPerson(mom);
+        addPerson(dad);
 
         loadDialogue();
         int test = 1;
