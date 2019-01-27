@@ -60,7 +60,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:scaleType="centerCrop"
-        app:layout_constraintDimensionRatio="2:1"
+        app:layout_constraintDimensionRatio="4:3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressYear"
@@ -72,7 +72,7 @@
             android:layout_height="match_parent"
             android:contentDescription="location image"
             android:scaleType="centerCrop"
-            app:srcCompat="@android:color/black" />
+            app:srcCompat="@drawable/bedroom" />
 
         <ImageView
             android:id="@+id/imgGradient"
@@ -108,6 +108,7 @@
         android:layout_marginBottom="16dp"
         android:onClick="leaveRoom"
         android:text="@string/btn_leave_room"
+        android:textAllCaps="false"
         android:theme="@style/AppTheme.ActionButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
