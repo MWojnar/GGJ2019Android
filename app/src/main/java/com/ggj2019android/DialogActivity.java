@@ -126,7 +126,7 @@ public class DialogActivity extends AppCompatActivity {
     public void say(View view)
     {
         String input = _txtRequest.getText().toString();
-        String[] inputWords = input.trim().toLowerCase().split("\\s+");
+        String[] inputWords = input.trim().toLowerCase().split("[\\s\\.!?,]+");
         if (inputWords.length <= 0 || inputWords[0].equals(""))
         {
             return;
