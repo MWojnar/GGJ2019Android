@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ import java.util.Random;
 public class DialogActivity extends AppCompatActivity {
 
     // Controls
+    private ProgressBar _progressYear;
     private TextView _lblLocationName;
     private TextView _lblPersonName;
     private EditText _txtRequest;
@@ -43,12 +45,14 @@ public class DialogActivity extends AppCompatActivity {
     private Random _rand;
     private SharedPreferences _savedValues;
     private Game _game;
+    private ClockTask _task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dialog);
 
+        _progressYear = findViewById(R.id.progressYear);
         _lblLocationName = findViewById(R.id.lblLocationName);
         _lblPersonName = findViewById(R.id.lblPersonName);
         _txtRequest = findViewById(R.id.txtRequest);
@@ -91,12 +95,16 @@ public class DialogActivity extends AppCompatActivity {
         _lblPersonName.setText(person.getName());
 
         refreshWords();
+
+        _task = new ClockTask(_progressYear);
+        _task.execute();
     }
 
     @Override
     protected void onPause()
     {
         super.onPause();
+        _task.cancel(true);
     }
 
     public void leaveRoom(View v)

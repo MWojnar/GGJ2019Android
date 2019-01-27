@@ -24,12 +24,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void playGame(View view)
     {
-        Game game = new Game(getApplicationContext(), SystemClock.uptimeMillis());
+        Game game = new Game(getApplicationContext());
         game.setCurrentLocationId("child_bedroom");
         game.setCurrentPerson("Mom");
-        for (Location location : game.getLocations()) {
-            location.randomizePeople(game.getPeople());
-        }
+        game.randomizePeople();
         Game.INSTANCE = game;
 
         Intent intent = new Intent(this, DialogActivity.class);

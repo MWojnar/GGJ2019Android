@@ -12,39 +12,55 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapActivity" >
+        <activity android:name=".MapActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".SelectPersonActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".SelectPersonActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MapActivity" />
         </activity>
-        <activity android:name=".SelectActionActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".SelectActionActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MapActivity" />
         </activity>
-        <activity android:name=".DialogActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".DialogActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MapActivity" />
         </activity>
-        <activity android:name=".DialogEndActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".DialogEndActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MapActivity" />
         </activity>
-        <activity android:name=".BirthdayActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".BirthdayActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MapActivity" />
         </activity>
+
+        <service
+            android:name=".ClockService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
