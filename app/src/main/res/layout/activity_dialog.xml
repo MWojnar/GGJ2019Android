@@ -82,7 +82,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="location image"
                 android:scaleType="centerCrop"
-                app:srcCompat="@android:color/black" />
+                app:srcCompat="@drawable/bedroom" />
 
             <ImageView
                 android:id="@+id/imgPerson"
@@ -90,7 +90,14 @@
                 android:layout_height="match_parent"
                 android:contentDescription="person image"
                 android:scaleType="fitEnd"
-                app:srcCompat="@android:color/darker_gray" />
+                app:srcCompat="@drawable/mom" />
+
+            <ImageView
+                android:id="@+id/imgGradient"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitEnd"
+                app:srcCompat="@drawable/gradient_location" />
 
             <TextView
                 android:id="@+id/lblLocationName"

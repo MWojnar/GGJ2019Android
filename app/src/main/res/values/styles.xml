@@ -15,12 +15,12 @@
 
     <style name="AppTheme.ActionButton" parent="Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/colorActionButton</item>
-        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColor">@color/colorButtonText</item>
     </style>
 
     <style name="AppTheme.WordButton" parent="Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/colorWordButton</item>
-        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColor">@color/colorButtonText</item>
     </style>
 
 </resources>
