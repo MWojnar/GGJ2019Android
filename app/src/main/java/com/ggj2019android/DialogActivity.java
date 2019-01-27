@@ -2,11 +2,21 @@ package com.ggj2019android;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.recyclerview.extensions.ListAdapter;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +38,9 @@ public class DialogActivity extends AppCompatActivity {
     // Controls
     private TextView _lblLocationName;
     private TextView _lblPersonName;
-    private TextView _txtRequest;
+    private EditText _txtRequest;
+    private NavigationView _frameVocab;
+    private RecyclerView _lstWords;
 
     // State
     private Random _rand;
@@ -43,6 +55,10 @@ public class DialogActivity extends AppCompatActivity {
         _lblLocationName = findViewById(R.id.lblLocationName);
         _lblPersonName = findViewById(R.id.lblPersonName);
         _txtRequest = findViewById(R.id.txtRequest);
+
+        _frameVocab = findViewById(R.id.frameVocab);
+        _lstWords = _frameVocab.getHeaderView(0).findViewById(R.id.lstWords);
+        _lstWords.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         _txtRequest.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -75,6 +91,8 @@ public class DialogActivity extends AppCompatActivity {
         Person person = _game.getCurrentPerson();
         _lblLocationName.setText(location.getName());
         _lblPersonName.setText(person.getName());
+
+        refreshWords();
     }
 
     @Override
@@ -87,6 +105,11 @@ public class DialogActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
+    }
+
+    private void refreshWords()
+    {
+        _lstWords.setAdapter(new WordsAdapter(_game.getWords()));
     }
 
     private void say(String input)
@@ -106,6 +129,7 @@ public class DialogActivity extends AppCompatActivity {
             {
                 Toast.makeText(this, option.getResponseText(), Toast.LENGTH_SHORT).show();
                 option.runDialogueEffect(_game);
+                refreshWords();
                 return;
             }
         }
@@ -169,5 +193,61 @@ public class DialogActivity extends AppCompatActivity {
         }
         return true;
         */
+    }
+
+    private void enterWord(String word)
+    {
+        StringBuilder text = new StringBuilder(_txtRequest.getText());
+        text.append(' ');
+        text.append(word);
+        _txtRequest.setText(text);
+        _txtRequest.setSelection(text.length());
+    }
+
+    private class WordsAdapter extends RecyclerView.Adapter<WordViewHolder>
+    {
+        private List<String> _words;
+
+        public WordsAdapter(List<String> words)
+        {
+            _words = words;
+        }
+
+        @Override @NonNull
+        public WordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i)
+        {
+            TextView lblWord = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_action, parent, false);
+            return new WordViewHolder(lblWord);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull WordViewHolder vh, int i)
+        {
+            final String word = _words.get(i);
+            vh.lblWord.setText(word);
+            vh.lblWord.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    enterWord(word);
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount()
+        {
+            return _words.size();
+        }
+    }
+
+    private static class WordViewHolder extends RecyclerView.ViewHolder
+    {
+        public TextView lblWord;
+
+        public WordViewHolder(TextView lblWord)
+        {
+            super(lblWord);
+            this.lblWord = lblWord;
+        }
     }
 }
