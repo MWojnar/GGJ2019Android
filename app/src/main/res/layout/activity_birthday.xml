@@ -42,7 +42,7 @@
             android:layout_height="match_parent"
             android:contentDescription="location image"
             android:scaleType="centerCrop"
-            app:srcCompat="@android:color/black" />
+            app:srcCompat="@drawable/happy_birthday" />
 
         <TextView
             android:id="@+id/lblLocationName"
@@ -50,6 +50,10 @@
             android:layout_height="match_parent"
             android:layout_margin="16dp"
             android:gravity="bottom|start"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:shadowRadius="10"
             android:text="@string/header_happy_birthday"
             android:textAlignment="viewStart"
             android:textColor="@android:color/white"

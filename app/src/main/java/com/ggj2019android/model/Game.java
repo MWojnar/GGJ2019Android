@@ -6,6 +6,7 @@ import android.os.SystemClock;
 import android.util.Log;
 
 import com.ggj2019android.BirthdayActivity;
+import com.ggj2019android.R;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,7 +22,7 @@ public class Game {
 
     public static Game INSTANCE = null;
 
-    public static final long MILLISECONDS_PER_YEAR = 1000L * 20;
+    public static final long MILLISECONDS_PER_YEAR = 1000L * 60;
 
     private Context _applicationContext;
     private long _startTime;
@@ -56,13 +57,14 @@ public class Game {
         _words.add("dad");
         _words.add("mom");
 
+        addLocation("bedroom");
         //addLocation("infant_bedroom", "Bedroom", "Your favorite place", 0);
-        addLocation("bedroom", "Bedroom", "Your favorite place", 0);
+        //addLocation("bedroom", "Bedroom", "Your favorite place", 0);
         //addLocation("playground", "Playground", "Has the most awesome swingset", 0);
         //addLocation("library", "Library", "Has the best books. This is your quiet place.", 0);
 
-        Person mom = new Person("Mom", "Your Mother", 0);
-        Person dad = new Person("Dad", "Your Dad", 0);
+        Person mom = new Person("Mom", "Your Mother", R.drawable.mom);
+        Person dad = new Person("Dad", "Your Dad", R.drawable.dad);
 
         mom.setProbabilityForLocation("bedroom", 1.0f);
         dad.setProbabilityForLocation("bedroom", 1.0f);
@@ -251,25 +253,25 @@ public class Game {
                 return;
         switch (locationId) {
             case "bedroom":
-                addLocation(locationId, "Bedroom", "Your favorite place", 0);
+                addLocation(locationId, "Bedroom", "Your favorite place", R.drawable.bedroom);
                 break;
             case "playground":
-                addLocation(locationId, "Playground", "Has the most awesome swingset", 0);
+                addLocation(locationId, "Playground", "Has the most awesome swingset", R.drawable.playground);
                 break;
             case "library":
-                addLocation(locationId, "Library", "Has the best books. This is your quiet place.", 0);
+                addLocation(locationId, "Library", "Has the best books. This is your quiet place.", R.drawable.library);
                 break;
             case "friend_house":
-                addLocation(locationId, "Friend's House", "You love hanging out at your friends' homes!", 0);
+                addLocation(locationId, "Friend's House", "You love hanging out at your friends' homes!", R.drawable.friend_house);
                 break;
             case "bandroom":
-                addLocation(locationId, "Bandroom", "A great place to let loose and jam.", 0);
+                addLocation(locationId, "Bandroom", "A great place to let loose and jam.", R.drawable.bandroom);
                 break;
             case "stage":
-                addLocation(locationId, "Stage", "Don't be nervous! It's showtime!", 0);
+                addLocation(locationId, "Stage", "Don't be nervous! It's showtime!", R.drawable.stage);
                 break;
             case "dance_studio":
-                addLocation(locationId, "Dance Studio", "A place to move it to the beat.", 0);
+                addLocation(locationId, "Dance Studio", "A place to move it to the beat.", R.drawable.dance_studio);
                 break;
         }
     }
@@ -311,21 +313,21 @@ public class Game {
                 return;
         switch(personName) {
             case "tj":
-                Person tj = new Person(personName, "A bookworm, but a good friend.", 0);
+                Person tj = new Person(personName, "A bookworm, but a good friend.", R.drawable.tj);
                 tj.setProbabilityForLocation("library", 1.0f);
                 tj.setProbabilityForLocation("friend_house", 0.5f);
                 tj.setProbabilityForLocation("playground", 0.1f);
                 addPerson(tj);
                 break;
             case "shawn":
-                Person shawn = new Person(personName, "Loves playing all kinds of sports.", 0);
+                Person shawn = new Person(personName, "Loves playing all kinds of sports.", R.drawable.shawn);
                 shawn.setProbabilityForLocation("playground", 1.0f);
                 shawn.setProbabilityForLocation("friend_house", 0.5f);
                 shawn.setProbabilityForLocation("library", 0.1f);
                 addPerson(shawn);
                 break;
             case "judy":
-                Person judy = new Person(personName, "A very talented pianist.", 0);
+                Person judy = new Person(personName, "A very talented pianist.", R.drawable.judy);
                 judy.setProbabilityForLocation("bandroom", 1.0f);
                 judy.setProbabilityForLocation("stage", 0.5f);
                 judy.setProbabilityForLocation("friend_house", 0.5f);
@@ -333,7 +335,7 @@ public class Game {
                 addPerson(judy);
                 break;
             case "jennifer":
-                Person jennifer = new Person(personName, "Loves to dance, very energetic.", 0);
+                Person jennifer = new Person(personName, "Loves to dance, very energetic.", R.drawable.jennifer);
                 jennifer.setProbabilityForLocation("dance_studio", 1.0f);
                 jennifer.setProbabilityForLocation("stage", 0.5f);
                 jennifer.setProbabilityForLocation("friend_house", 0.5f);

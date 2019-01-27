@@ -6,16 +6,21 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!--<item name="android:background">@color/colorBackground</item>-->
+        <!--<item name="android:windowBackground">@color/colorBackground</item>-->
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="android:textColor">@color/colorText</item>
     </style>
 
     <style name="AppTheme.ActionButton" parent="Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">#0e16ff</item>
-        <item name="android:textColor">#ffffff</item>
+        <item name="colorButtonNormal">@color/colorActionButton</item>
+        <item name="android:textColor">@color/colorText</item>
     </style>
 
     <style name="AppTheme.WordButton" parent="Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">#ff6c00</item>
-        <item name="android:textColor">#ffffff</item>
+        <item name="colorButtonNormal">@color/colorWordButton</item>
+        <item name="android:textColor">@color/colorText</item>
     </style>
 
 </resources>
