@@ -171,6 +171,7 @@ public class Game {
 
             // Happy Birthday!!!
             Intent intent = new Intent(_applicationContext, BirthdayActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             _applicationContext.startActivity(intent);
         }
     }
