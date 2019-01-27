@@ -1,27 +1,26 @@
 package com.ggj2019android.model;
 
 public abstract class DialogueOption {
-    protected String _inputText;
+    protected String[] _inputWords;
     protected String _responseText;
-    protected String _wordsGained;
-    protected String _locationsGained;
-    protected String _peopleGained;
+    protected String[] _wordsGained;
 
     public DialogueOption() {
-        _inputText = "";
+        _inputWords = new String[0];
         _responseText = "";
-        _wordsGained = "";
-        _locationsGained = "";
-        _peopleGained = "";
+        _wordsGained = new String[0];
     }
 
-    public String getInputText() {
-        return _inputText;
+    protected String[] splitWords(String words)
+    {
+        return words.trim().toLowerCase().split("\\s+");
     }
 
-    public String getResponseText() {
-        return _responseText;
-    }
+    public String[] getInputWords() { return _inputWords;}
+
+    public String getResponseText() { return _responseText; }
+
+    public String[] getGainedWords() { return _wordsGained; }
 
     public abstract boolean isAvailable(Game game);
 

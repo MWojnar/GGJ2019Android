@@ -154,15 +154,15 @@ public class DialogActivity extends AppCompatActivity {
             {
                 option.runDialogueEffect(_game);
                 refreshWords();
-                showResponse(input, option.getResponseText());
+                showResponse(input, option.getResponseText(), option.getGainedWords());
                 return;
             }
         }
 
-        showResponse(input, "Huh?");
+        showResponse(input, "Huh?", null);
     }
 
-    private void showResponse(String input, String output)
+    private void showResponse(String input, String output, String[] gainedWords)
     {
         _txtRequest.setText("");
         _lblOutput.setText("Me: " + input + "\n\n" + _game.getCurrentPersonName() + ": " + output);
@@ -207,7 +207,7 @@ public class DialogActivity extends AppCompatActivity {
         for (int i = 0; i < inputWords.length; i++)
             if (!_game.hasWord(inputWords[i]))
                 inputWords[i] = "";
-        String[] testWords = option.getInputText().trim().toLowerCase().split("\\s+");
+        String[] testWords = option.getInputWords();
 
         HashSet<String> inputSet = new HashSet<>();
         HashSet<String> testSet = new HashSet<>();

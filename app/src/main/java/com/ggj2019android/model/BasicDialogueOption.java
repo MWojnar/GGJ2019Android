@@ -5,25 +5,34 @@ import java.util.Map;
 
 public class BasicDialogueOption extends DialogueOption
 {
-    private String _person;
-    private String _location;
-    private Map<String, Integer> _skillRequirements;
-    private Map<String, Integer> _skillEffects;
-    private Map<String, Integer> _favorEffects;
+    protected String _person;
+    protected String _location;
+    protected Map<String, Integer> _skillRequirements;
+    protected Map<String, Integer> _skillEffects;
+    protected Map<String, Integer> _favorEffects;
+    protected String[] _locationsGained;
+    protected String[] _peopleGained;
 
-    public BasicDialogueOption(String person, String location, String inputText, String responseText,
-                               String wordsGained, String locationsGained, String peopleGained) {
+    public BasicDialogueOption(
+            String person,
+            String location,
+            String inputText,
+            String responseText,
+            String wordsGained,
+            String locationsGained,
+            String peopleGained)
+    {
         super();
         _person = person;
         _location = location;
-        _inputText = inputText;
+        _inputWords = splitWords(inputText);
         _responseText = responseText;
-        _wordsGained = wordsGained;
-        _locationsGained = locationsGained;
-        _peopleGained = peopleGained;
-        _skillRequirements = new LinkedHashMap<String, Integer>();
-        _skillEffects = new LinkedHashMap<String, Integer>();
-        _favorEffects = new LinkedHashMap<String, Integer>();
+        _wordsGained = splitWords(wordsGained);
+        _locationsGained = splitWords(locationsGained);
+        _peopleGained = splitWords(peopleGained);
+        _skillRequirements = new LinkedHashMap<>();
+        _skillEffects = new LinkedHashMap<>();
+        _favorEffects = new LinkedHashMap<>();
     }
 
     @Override
@@ -49,11 +58,11 @@ public class BasicDialogueOption extends DialogueOption
             game.increaseSkill(skillEffect.getKey(), skillEffect.getValue());
         for (Map.Entry<String, Integer> favorEffect : _favorEffects.entrySet())
             game.getPerson(favorEffect.getKey()).adjustFavor(favorEffect.getValue());
-        for (String word : _wordsGained.split(" "))
+        for (String word : _wordsGained)
             game.addWord(word);
-        for (String location : _locationsGained.split(" "))
+        for (String location : _locationsGained)
             game.addLocation(location);
-        for (String person : _peopleGained.split(" "))
+        for (String person : _peopleGained)
             game.addPerson(person);
     }
 
