@@ -3,6 +3,7 @@
     android:id="@+id/lblWord"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textAllCaps="false" >
+    android:textAllCaps="false"
+    android:theme="@style/AppTheme.WordButton" >
 
 </Button>

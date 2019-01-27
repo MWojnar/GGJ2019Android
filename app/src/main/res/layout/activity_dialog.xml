@@ -107,6 +107,7 @@
             android:layout_marginBottom="16dp"
             android:onClick="leaveRoom"
             android:text="@string/btn_leave_room"
+            android:theme="@style/AppTheme.ActionButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -119,6 +120,7 @@
             android:layout_marginTop="16dp"
             android:onClick="showWords"
             android:text="@string/btn_talk_vocab"
+            android:theme="@style/AppTheme.WordButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frameImages" />
 
@@ -130,6 +132,7 @@
             android:layout_marginTop="16dp"
             android:onClick="say"
             android:text="@string/btn_talk_submit"
+            android:theme="@style/AppTheme.ActionButton"
             app:layout_constraintStart_toEndOf="@+id/btnVocab"
             app:layout_constraintTop_toBottomOf="@+id/frameImages" />
 
