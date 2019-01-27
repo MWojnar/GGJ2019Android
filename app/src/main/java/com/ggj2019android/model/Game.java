@@ -328,6 +328,7 @@ public class Game {
                 addPerson(jennifer);
                 break;
         }
+        randomizePeople();
     }
 
     public List<DialogueOption> getDialogOptions()
