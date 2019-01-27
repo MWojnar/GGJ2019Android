@@ -7,16 +7,13 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.recyclerview.extensions.ListAdapter;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,8 +24,6 @@ import com.ggj2019android.model.Location;
 import com.ggj2019android.model.Person;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -61,7 +56,7 @@ public class DialogActivity extends AppCompatActivity {
         _drawerLayout = findViewById(R.id.drawerLayout);
         _frameVocab = findViewById(R.id.frameVocab);
         _lstWords = _frameVocab.getHeaderView(0).findViewById(R.id.lstWords);
-        _lstWords.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        _lstWords.setLayoutManager(new GridLayoutManager(this, 3));
 
         _txtRequest.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -207,7 +202,7 @@ public class DialogActivity extends AppCompatActivity {
         @Override @NonNull
         public WordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i)
         {
-            TextView lblWord = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_action, parent, false);
+            TextView lblWord = (TextView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_word, parent, false);
             return new WordViewHolder(lblWord);
         }
 
