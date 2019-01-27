@@ -14,11 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ggj2019android.model.DialogueOption;
 import com.ggj2019android.model.Game;
@@ -41,6 +41,7 @@ public class DialogActivity extends AppCompatActivity {
     private TextView _lblPersonName;
     private ImageView _imgPersonImage;
     private EditText _txtRequest;
+    private TextView _lblOutput;
     private DrawerLayout _drawerLayout;
     private NavigationView _frameVocab;
     private RecyclerView _lstWords;
@@ -63,6 +64,7 @@ public class DialogActivity extends AppCompatActivity {
         _lblPersonName = findViewById(R.id.lblPersonName);
         _imgPersonImage = findViewById(R.id.imgPerson);
         _txtRequest = findViewById(R.id.txtRequest);
+        _lblOutput = findViewById(R.id.lblOutput);
 
         _drawerLayout = findViewById(R.id.drawerLayout);
         _frameVocab = findViewById(R.id.frameVocab);
@@ -77,7 +79,6 @@ public class DialogActivity extends AppCompatActivity {
                     actionId == EditorInfo.IME_ACTION_GO)
                 {
                     say(_txtRequest);
-                    return true;
                 }
                 return false;
             }
@@ -104,6 +105,7 @@ public class DialogActivity extends AppCompatActivity {
         _imgLocationImage.setImageResource(location.getImage());
         _lblPersonName.setText(person.getName());
         _imgPersonImage.setImageResource(person.getImage());
+        _lblOutput.setVisibility(View.GONE);
 
         refreshWords();
 
@@ -136,8 +138,8 @@ public class DialogActivity extends AppCompatActivity {
 
     public void say(View view)
     {
-        String input = _txtRequest.getText().toString();
-        String[] inputWords = input.trim().toLowerCase().split("[\\s\\.!?,]+");
+        String input = _txtRequest.getText().toString().trim();
+        String[] inputWords = input.toLowerCase().split("[\\s\\.!?,]+");
         if (inputWords.length <= 0 || inputWords[0].equals(""))
         {
             return;
@@ -150,16 +152,28 @@ public class DialogActivity extends AppCompatActivity {
         {
             if (doesInputMatch(inputWords, option))
             {
-                Toast.makeText(this, option.getResponseText(), Toast.LENGTH_SHORT).show();
                 option.runDialogueEffect(_game);
                 refreshWords();
-                _txtRequest.setText("");
+                showResponse(input, option.getResponseText(), option.getGainedWords());
                 return;
             }
         }
 
-        Toast.makeText(this, "Huh?", Toast.LENGTH_SHORT).show();
+        showResponse(input, "Huh?", null);
+    }
+
+    private void showResponse(String input, String output, String[] gainedWords)
+    {
         _txtRequest.setText("");
+        _lblOutput.setText("Me: " + input + "\n\n" + _game.getCurrentPersonName() + ": " + output);
+        _lblOutput.setVisibility(View.VISIBLE);
+        hideKeyboard();
+    }
+
+    private void hideKeyboard()
+    {
+        InputMethodManager mgr = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(_txtRequest.getWindowToken(), 0);
     }
 
     private List<DialogueOption> getAvailableOptions()
@@ -193,7 +207,7 @@ public class DialogActivity extends AppCompatActivity {
         for (int i = 0; i < inputWords.length; i++)
             if (!_game.hasWord(inputWords[i]))
                 inputWords[i] = "";
-        String[] testWords = option.getInputText().trim().toLowerCase().split("\\s+");
+        String[] testWords = option.getInputWords();
 
         HashSet<String> inputSet = new HashSet<>();
         HashSet<String> testSet = new HashSet<>();
