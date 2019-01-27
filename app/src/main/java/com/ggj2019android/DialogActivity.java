@@ -2,6 +2,8 @@ package com.ggj2019android;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -9,6 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -164,8 +170,39 @@ public class DialogActivity extends AppCompatActivity {
 
     private void showResponse(String input, String output, String[] gainedWords)
     {
+        int highlightColor = getResources().getColor(R.color.colorHighlightWord);
+        ForegroundColorSpan highlight = new ForegroundColorSpan(highlightColor);
+        StyleSpan bold = new StyleSpan(Typeface.BOLD);
+
+        SpannableStringBuilder sb = new SpannableStringBuilder();
+        sb.append("Me: ", bold, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb.append(input);
+        sb.append("\n\n");
+        sb.append(_game.getCurrentPersonName(), bold, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb.append(": ", bold, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        int lengthBeforeOutput = sb.length();
+        sb.append(output);
+
+        if (gainedWords != null) {
+            for (String word : gainedWords) {
+                for (int i = 0, n = output.length(); i < n; ) {
+                    int wordStart = output.indexOf(word, i);
+                    if (wordStart >= 0) {
+                        int spanStart = lengthBeforeOutput + wordStart;
+                        int spanEnd = spanStart + word.length();
+                        sb.setSpan(bold, spanStart, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        sb.setSpan(highlight, spanStart, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        i = wordStart + word.length();
+                    } else {
+                        i = n;
+                    }
+                }
+            }
+        }
+
         _txtRequest.setText("");
-        _lblOutput.setText("Me: " + input + "\n\n" + _game.getCurrentPersonName() + ": " + output);
+        _lblOutput.setText(sb);
         _lblOutput.setVisibility(View.VISIBLE);
         hideKeyboard();
     }

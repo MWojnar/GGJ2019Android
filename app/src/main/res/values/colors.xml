@@ -8,4 +8,5 @@
     <color name="colorActionButton">#0e16ff</color>
     <color name="colorWordButton">#ff6c00</color>
     <color name="colorButtonText">#ffffff</color>
+    <color name="colorHighlightWord">#d5ff03</color>
 </resources>
