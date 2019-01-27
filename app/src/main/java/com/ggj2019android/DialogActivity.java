@@ -170,8 +170,6 @@ public class DialogActivity extends AppCompatActivity {
 
     private void showResponse(String input, String output, String[] gainedWords)
     {
-        int highlightColor = getResources().getColor(R.color.colorHighlightWord);
-        ForegroundColorSpan highlight = new ForegroundColorSpan(highlightColor);
         StyleSpan bold = new StyleSpan(Typeface.BOLD);
 
         SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -184,10 +182,15 @@ public class DialogActivity extends AppCompatActivity {
         int lengthBeforeOutput = sb.length();
         sb.append(output);
 
+        // Highlight the gained words
         if (gainedWords != null) {
+            String lowercaseOutput = output.toLowerCase();
+            int highlightColor = getResources().getColor(R.color.colorHighlightWord);
+            ForegroundColorSpan highlight = new ForegroundColorSpan(highlightColor);
+
             for (String word : gainedWords) {
-                for (int i = 0, n = output.length(); i < n; ) {
-                    int wordStart = output.indexOf(word, i);
+                for (int i = 0, n = lowercaseOutput.length(); i < n; ) {
+                    int wordStart = lowercaseOutput.indexOf(word, i);
                     if (wordStart >= 0) {
                         int spanStart = lengthBeforeOutput + wordStart;
                         int spanEnd = spanStart + word.length();
