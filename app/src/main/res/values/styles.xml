@@ -11,16 +11,19 @@
         <!--<item name="android:windowBackground">@color/colorBackground</item>-->
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="android:textColor">@color/colorText</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.ActionButton" parent="Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/colorActionButton</item>
-        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColor">@color/colorButtonText</item>
     </style>
 
     <style name="AppTheme.WordButton" parent="Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/colorWordButton</item>
-        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColor">@color/colorButtonText</item>
     </style>
 
 </resources>
