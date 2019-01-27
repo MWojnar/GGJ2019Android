@@ -70,7 +70,7 @@ public class DialogActivity extends AppCompatActivity {
                     actionId == EditorInfo.IME_ACTION_DONE ||
                     actionId == EditorInfo.IME_ACTION_GO)
                 {
-                    say(textView.getText().toString());
+                    say(_txtRequest);
                     return true;
                 }
                 return false;
@@ -115,8 +115,14 @@ public class DialogActivity extends AppCompatActivity {
         _lstWords.setAdapter(new WordsAdapter(_game.getWords()));
     }
 
-    private void say(String input)
+    public void showWords(View view)
     {
+        _drawerLayout.openDrawer(_frameVocab);
+    }
+
+    public void say(View view)
+    {
+        String input = _txtRequest.getText().toString();
         String[] inputWords = input.trim().toLowerCase().split("\\s+");
         if (inputWords.length <= 0 || inputWords[0].equals(""))
         {
@@ -133,6 +139,7 @@ public class DialogActivity extends AppCompatActivity {
                 Toast.makeText(this, option.getResponseText(), Toast.LENGTH_SHORT).show();
                 option.runDialogueEffect(_game);
                 refreshWords();
+                _txtRequest.setText("");
                 return;
             }
         }

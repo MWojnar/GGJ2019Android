@@ -21,13 +21,13 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:imeOptions="actionGo|flagForceAscii"
+            android:imeOptions="flagForceAscii"
             android:inputType="textCapSentences"
             app:layout_constraintBottom_toTopOf="@+id/btnLeaveRoom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameImages"
+            app:layout_constraintTop_toBottomOf="@+id/btnVocab"
             app:layout_constraintVertical_bias="0.0" />
 
         <ProgressBar
@@ -50,7 +50,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintDimensionRatio="4:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progressYear"
@@ -110,6 +110,28 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnVocab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:onClick="showWords"
+            android:text="@string/btn_talk_vocab"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameImages" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:onClick="say"
+            android:text="@string/btn_talk_submit"
+            app:layout_constraintStart_toEndOf="@+id/btnVocab"
+            app:layout_constraintTop_toBottomOf="@+id/frameImages" />
 
     </android.support.constraint.ConstraintLayout>
 
