@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,9 @@ public class DialogActivity extends AppCompatActivity {
     private ProgressBar _progressYear;
     private TextView _ageValue;
     private TextView _lblLocationName;
+    private ImageView _imgLocationImage;
     private TextView _lblPersonName;
+    private ImageView _imgPersonImage;
     private EditText _txtRequest;
     private DrawerLayout _drawerLayout;
     private NavigationView _frameVocab;
@@ -56,7 +59,9 @@ public class DialogActivity extends AppCompatActivity {
         _progressYear = findViewById(R.id.progressYear);
         _ageValue = findViewById(R.id.ageValue);
         _lblLocationName = findViewById(R.id.lblLocationName);
+        _imgLocationImage = findViewById(R.id.imgLocation);
         _lblPersonName = findViewById(R.id.lblPersonName);
+        _imgPersonImage = findViewById(R.id.imgPerson);
         _txtRequest = findViewById(R.id.txtRequest);
 
         _drawerLayout = findViewById(R.id.drawerLayout);
@@ -96,7 +101,9 @@ public class DialogActivity extends AppCompatActivity {
         Location location = _game.getCurrentLocation();
         Person person = _game.getCurrentPerson();
         _lblLocationName.setText(location.getName());
+        _imgLocationImage.setImageResource(location.getImage());
         _lblPersonName.setText(person.getName());
+        _imgPersonImage.setImageResource(person.getImage());
 
         refreshWords();
 

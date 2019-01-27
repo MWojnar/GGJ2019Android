@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -26,6 +27,7 @@ public class SelectPersonActivity extends AppCompatActivity
     private ProgressBar _progressYear;
     private TextView _ageValue;
     private TextView _lblLocationName;
+    private ImageView _imgLocationImage;
     private RecyclerView _lstPeople;
     private RecyclerView.LayoutManager _peopleLayout;
     private RecyclerView.Adapter _peopleAdapter;
@@ -43,6 +45,7 @@ public class SelectPersonActivity extends AppCompatActivity
         _progressYear = findViewById(R.id.progressYear);
         _ageValue = findViewById(R.id.ageValue);
         _lblLocationName = findViewById(R.id.lblLocationName);
+        _imgLocationImage = findViewById(R.id.imgLocation);
 
         // Setup the List of People at the current Location
         _lstPeople = findViewById(R.id.lstPersons);
@@ -66,6 +69,7 @@ public class SelectPersonActivity extends AppCompatActivity
         _peopleAdapter = new SelectPersonActivity.PeopleAdapter(location.getPeople());
         _lstPeople.setAdapter(_peopleAdapter);
         _lblLocationName.setText(location.getName());
+        _imgLocationImage.setImageResource(location.getImage());
 
         _task = new ClockTask(_progressYear);
         _task.execute();
