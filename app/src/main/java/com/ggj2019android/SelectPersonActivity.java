@@ -24,6 +24,7 @@ public class SelectPersonActivity extends AppCompatActivity
 {
     // Controls
     private ProgressBar _progressYear;
+    private TextView _ageValue;
     private TextView _lblLocationName;
     private RecyclerView _lstPeople;
     private RecyclerView.LayoutManager _peopleLayout;
@@ -40,6 +41,7 @@ public class SelectPersonActivity extends AppCompatActivity
         setContentView(R.layout.activity_select_person);
 
         _progressYear = findViewById(R.id.progressYear);
+        _ageValue = findViewById(R.id.ageValue);
         _lblLocationName = findViewById(R.id.lblLocationName);
 
         // Setup the List of People at the current Location
@@ -57,6 +59,8 @@ public class SelectPersonActivity extends AppCompatActivity
         super.onResume();
 
         _game = Game.INSTANCE;
+
+        _ageValue.setText(Integer.toString(_game.getAge()));
 
         Location location = _game.getCurrentLocation();
         _peopleAdapter = new SelectPersonActivity.PeopleAdapter(location.getPeople());

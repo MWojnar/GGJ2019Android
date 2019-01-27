@@ -6,4 +6,5 @@
     <string name="btn_talk_submit">Say</string>
     <string name="btn_talk_vocab">Words</string>
     <string name="header_happy_birthday">Happy Birthday!!!</string>
+    <string name="lbl_age">Age</string>
 </resources>

@@ -34,6 +34,7 @@ public class DialogActivity extends AppCompatActivity {
 
     // Controls
     private ProgressBar _progressYear;
+    private TextView _ageValue;
     private TextView _lblLocationName;
     private TextView _lblPersonName;
     private EditText _txtRequest;
@@ -53,6 +54,7 @@ public class DialogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dialog);
 
         _progressYear = findViewById(R.id.progressYear);
+        _ageValue = findViewById(R.id.ageValue);
         _lblLocationName = findViewById(R.id.lblLocationName);
         _lblPersonName = findViewById(R.id.lblPersonName);
         _txtRequest = findViewById(R.id.txtRequest);
@@ -88,6 +90,8 @@ public class DialogActivity extends AppCompatActivity {
         super.onResume();
 
         _game = Game.INSTANCE;
+
+        _ageValue.setText(Integer.toString(_game.getAge()));
 
         Location location = _game.getCurrentLocation();
         Person person = _game.getCurrentPerson();

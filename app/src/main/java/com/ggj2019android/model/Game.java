@@ -43,7 +43,7 @@ public class Game {
         _startTime = SystemClock.uptimeMillis();
         _currTime = _startTime;
         _timeElapsed = 0;
-        _age = 0;
+        _age = 2;
         _lifeStage = LifeStage.INFANT;
         _currentLocationId = "bedroom";
 

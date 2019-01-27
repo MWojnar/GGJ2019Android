@@ -27,6 +27,7 @@ public class MapActivity extends AppCompatActivity {
 
     // Controls
     private ProgressBar _progressYear;
+    private TextView _ageValue;
     private RecyclerView _lstLocations;
     private RecyclerView.LayoutManager _locationsLayout;
     private RecyclerView.Adapter _locationsAdapter;
@@ -42,6 +43,7 @@ public class MapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_map);
 
         _progressYear = findViewById(R.id.progressYear);
+        _ageValue = findViewById(R.id.ageValue);
 
         // Setup the list of locations
         _lstLocations = findViewById(R.id.lstMapLocations);
@@ -61,6 +63,8 @@ public class MapActivity extends AppCompatActivity {
         super.onResume();
 
         _game = Game.INSTANCE;
+
+        _ageValue.setText(Integer.toString(_game.getAge()));
 
         _locationsAdapter = new LocationsAdapter(_game.getLocations());
         _lstLocations.setAdapter(_locationsAdapter);
