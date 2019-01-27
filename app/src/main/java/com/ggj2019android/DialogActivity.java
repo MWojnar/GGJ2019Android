@@ -148,6 +148,7 @@ public class DialogActivity extends AppCompatActivity {
         }
 
         Toast.makeText(this, "Huh?", Toast.LENGTH_SHORT).show();
+        _txtRequest.setText("");
     }
 
     private List<DialogueOption> getAvailableOptions()
