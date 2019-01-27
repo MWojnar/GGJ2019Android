@@ -12,19 +12,19 @@ Shawn,playground,soccer,Soccer requires dexterity to play well. ,dexterity,,,,,,
 Shawn,playground,dexterity,To be skillful at sports is just as accomplished as a practiced musician.,skillful sports,,,,,,,,~
 Shawn,friend_house,skillful,Let's go see Judy's musical performance!,musical see,bandroom,judy,,,,,,~
 Judy,bandroom,musical,I have mastered the piano. Would you like to take lessons?,piano lessons,,,,,,,,~
-Judy,bandroom,piano,"Don't worry, maybe try a different octave!",octave different,stage,,,,,,,~
+Judy,bandroom,piano,Don't worry! Maybe try a different octave!,octave different,stage,,,,,,,~
 Judy,stage,octave,You have come a long way! I bet Jennifer's dance is about to start. Want to watch?,dance watch,dance_studio,jennifer,,,,,,~
 Jennifer,dance studio,dance,Dancing lets me use my imagination.,imagination,,,,,,,,~
 Jennifer,bandroom,imagination,Fueling my imagination allows me to express my feelings.,feelings,,,,,,,,~
-Jennifer,stage,feelings,"Even when performing in front of a huge crowd, it's my friends faces I search out.",friends crowd,,,,,,,,~
-Dad,,dad,"Yes, that's me!",yes,,,,,,,,~
+Jennifer,stage,feelings,Even when performing in front of a huge crowd... It's my friends faces I search out.,friends crowd,,,,,,,,~
+Dad,,dad,Yes that's me!,yes,,,,,,,,~
 Dad,,book,An important tool to learn.,learn,,,,,,,,~
-Dad,,happy,"Hello happy, I'm Dad!",hello,,,,,,,,~
-TJ,,learn,"Yes, learning is important.",yes important,,,,,,,,~
+Dad,,happy,Hello happy: I'm Dad!,hello,,,,,,,,~
+TJ,,learn,Yes learning is important.,yes important,,,,,,,,~
 TJ,,help,I will help you study.,study,,,,,,,,~
 TJ,,toy,We can play later.,later,,,,,,,,~
 TJ,,understand,I'm happy you understand!,happy,,,,,,,,~
-TJ,,birthday,"No, my birthday is not today.",today no,,,,,,,,~
+TJ,,birthday,No. My birthday is not today.,today no,,,,,,,,~
 TJ,,friends,We'll conquer those tests with our friendship and intelligence!,intelligence,,,,,,,,~
 Shawn,,vocabulary,To lose isn't even a part of my vocabulary!,lose,,,,,,,,~
 Shawn,,play,Let's play some Baseball too.,baseball,,,,,,,,~
@@ -36,10 +36,10 @@ Judy,,feelings,You need to put more feeling into it!  More emotion!,emotion,,,,,
 Judy,,practice,It takes lots of practice to become good!,good,,,,,,,,~
 Judy,,dexterity,To perform music also requires dexterity.,perform,,,,,,,,~
 Judy,,learn,You must learn the notes on the scale!,notes,,,,,,,,~
-Judy,,yes,"Yes, music is the best!",best,,,,,,,,~
+Judy,,yes,Yes! Music is the best!,best,,,,,,,,~
 Judy,,friends,The best friends always have the greatest empathy!,empathy,,,,,,,,~
-Jennifer,,notes,"Watch closely and take notes, this dance is a doozy!",watch,,,,,,,,~
-Jennifer,,lose,"If you have fun dancing, then you can't lose!",fun,,,,,,,,~
+Jennifer,,notes,Watch closely and take notes: this dance is a doozy!,watch,,,,,,,,~
+Jennifer,,lose,If you have fun dancing... then you can't lose!,fun,,,,,,,,~
 Jennifer,,important,It's important to master the basics.,basics,,,,,,,,~
 Jennifer,,today,The weather is great today!,weather,,,,,,,,~
 Jennifer,,emotion,Dance is how we express our emotions with our bodies.,express,,,,,,,,~
