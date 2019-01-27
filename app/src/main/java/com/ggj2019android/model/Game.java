@@ -41,41 +41,7 @@ public class Game {
 
     public Game(Context applicationContext) {
         _applicationContext = applicationContext;
-        _startTime = SystemClock.uptimeMillis();
-        _currTime = _startTime;
-        _timeElapsed = 0;
-        _age = 2;
-        _lifeStage = LifeStage.INFANT;
-        _currentLocationId = "bedroom";
-
-        _words = new ArrayList<>();
-        _skills = new LinkedHashMap<>();
-        _locations = new LinkedHashMap<>();
-        _people = new LinkedHashMap<>();
-        _dialogueOptions = new ArrayList<>();
-
-        _words.add("dad");
-        _words.add("mom");
-
-        addLocation("bedroom");
-        //addLocation("infant_bedroom", "Bedroom", "Your favorite place", 0);
-        //addLocation("bedroom", "Bedroom", "Your favorite place", 0);
-        //addLocation("playground", "Playground", "Has the most awesome swingset", 0);
-        //addLocation("library", "Library", "Has the best books. This is your quiet place.", 0);
-
-        Person mom = new Person("Mom", "Your Mother", R.drawable.mom);
-        Person dad = new Person("Dad", "Your Dad", R.drawable.dad);
-
-        mom.setProbabilityForLocation("bedroom", 1.0f);
-        dad.setProbabilityForLocation("bedroom", 1.0f);
-        mom.setProbabilityForLocation("library", 0.2f);
-        dad.setProbabilityForLocation("playground", 0.2f);
-
-        addPerson(mom);
-        addPerson(dad);
-
-        loadDialogue();
-        int test = 1;
+        initialize();
     }
 
     private void loadDialogue() {
@@ -349,5 +315,42 @@ public class Game {
     public List<DialogueOption> getDialogOptions()
     {
         return _dialogueOptions;
+    }
+
+    public void initialize() {
+        _startTime = SystemClock.uptimeMillis();
+        _currTime = _startTime;
+        _timeElapsed = 0;
+        _age = 2;
+        _lifeStage = LifeStage.INFANT;
+        _currentLocationId = "bedroom";
+
+        _words = new ArrayList<>();
+        _skills = new LinkedHashMap<>();
+        _locations = new LinkedHashMap<>();
+        _people = new LinkedHashMap<>();
+        _dialogueOptions = new ArrayList<>();
+
+        _words.add("dad");
+        _words.add("mom");
+
+        addLocation("bedroom");
+        //addLocation("infant_bedroom", "Bedroom", "Your favorite place", 0);
+        //addLocation("bedroom", "Bedroom", "Your favorite place", 0);
+        //addLocation("playground", "Playground", "Has the most awesome swingset", 0);
+        //addLocation("library", "Library", "Has the best books. This is your quiet place.", 0);
+
+        Person mom = new Person("Mom", "Your Mother", R.drawable.mom);
+        Person dad = new Person("Dad", "Your Dad", R.drawable.dad);
+
+        mom.setProbabilityForLocation("bedroom", 1.0f);
+        dad.setProbabilityForLocation("bedroom", 1.0f);
+        mom.setProbabilityForLocation("library", 0.2f);
+        dad.setProbabilityForLocation("playground", 0.2f);
+
+        addPerson(mom);
+        addPerson(dad);
+
+        loadDialogue();
     }
 }
