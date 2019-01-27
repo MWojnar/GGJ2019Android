@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.recyclerview.extensions.ListAdapter;
@@ -39,6 +40,7 @@ public class DialogActivity extends AppCompatActivity {
     private TextView _lblLocationName;
     private TextView _lblPersonName;
     private EditText _txtRequest;
+    private DrawerLayout _drawerLayout;
     private NavigationView _frameVocab;
     private RecyclerView _lstWords;
 
@@ -56,6 +58,7 @@ public class DialogActivity extends AppCompatActivity {
         _lblPersonName = findViewById(R.id.lblPersonName);
         _txtRequest = findViewById(R.id.txtRequest);
 
+        _drawerLayout = findViewById(R.id.drawerLayout);
         _frameVocab = findViewById(R.id.frameVocab);
         _lstWords = _frameVocab.getHeaderView(0).findViewById(R.id.lstWords);
         _lstWords.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -173,26 +176,6 @@ public class DialogActivity extends AppCompatActivity {
         Collections.addAll(testSet, testWords);
 
         return inputSet.containsAll(testSet);
-
-        /*
-        for (String test : testWords)
-        {
-            boolean wordFound = false;
-            for (String input : inputWords)
-            {
-                if (test.equals(input))
-                {
-                    wordFound = true;
-                    break;
-                }
-            }
-            if (!wordFound)
-            {
-                return false;
-            }
-        }
-        return true;
-        */
     }
 
     private void enterWord(String word)
@@ -202,6 +185,7 @@ public class DialogActivity extends AppCompatActivity {
         text.append(word);
         _txtRequest.setText(text);
         _txtRequest.setSelection(text.length());
+        _drawerLayout.closeDrawers();
     }
 
     private class WordsAdapter extends RecyclerView.Adapter<WordViewHolder>
