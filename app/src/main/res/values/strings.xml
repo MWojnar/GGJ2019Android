@@ -5,4 +5,5 @@
     <string name="drawer_vocab_header">Words</string>
     <string name="btn_talk_submit">Say</string>
     <string name="btn_talk_vocab">Words</string>
+    <string name="header_happy_birthday">Happy Birthday!!!</string>
 </resources>

@@ -1,8 +1,11 @@
 package com.ggj2019android.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.SystemClock;
 import android.util.Log;
+
+import com.ggj2019android.BirthdayActivity;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,7 +21,7 @@ public class Game {
 
     public static Game INSTANCE = null;
 
-    public static final long MILLISECONDS_PER_YEAR = 1000L * 60;
+    public static final long MILLISECONDS_PER_YEAR = 1000L * 20;
 
     private Context _applicationContext;
     private long _startTime;
@@ -138,6 +141,11 @@ public class Game {
         return _timeElapsed;
     }
 
+    public void endPaused()
+    {
+        _currTime = SystemClock.uptimeMillis();
+    }
+
     public void updateTimeElapsed()
     {
         long time = SystemClock.uptimeMillis();
@@ -160,6 +168,10 @@ public class Game {
             }
 
             randomizePeople();
+
+            // Happy Birthday!!!
+            Intent intent = new Intent(_applicationContext, BirthdayActivity.class);
+            _applicationContext.startActivity(intent);
         }
     }
 
