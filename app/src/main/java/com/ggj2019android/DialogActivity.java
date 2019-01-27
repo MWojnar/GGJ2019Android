@@ -288,7 +288,7 @@ public class DialogActivity extends AppCompatActivity {
             vh.lblWord.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    enterWord(word);
+                    //enterWord(word);
                 }
             });
         }
