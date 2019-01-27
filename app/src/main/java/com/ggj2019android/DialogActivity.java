@@ -149,7 +149,10 @@ public class DialogActivity extends AppCompatActivity {
 
         for (DialogueOption option : all)
         {
-            available.add(option);
+            if (option.isAvailable(_game))
+            {
+                available.add(option);
+            }
         }
         return available;
     }
